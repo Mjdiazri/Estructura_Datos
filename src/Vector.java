@@ -76,17 +76,33 @@ public class Vector {
 
         public void adiciona(int posicion, Estudiantes estudiante){
 
-            if(!posicionValida(posicion)){
+            if(!posicionValida(posicion)) {
                 throw new IllegalArgumentException("Posicion invalida");
             }
 
-            for (int i = totalEstudiantes -1; i >= posicion ; i-=1) {
+            for (int i = totalEstudiantes - 1; i >= posicion ; i-=1) {
                 alumnos[i+1] = alumnos[1];
             }
 
             alumnos[posicion] = estudiante;
             totalEstudiantes ++;
+
         }
+
+
+        private void guardarEspacio(){
+            if(totalEstudiantes == alumnos.length){
+                Estudiantes[] nuevoArray = new Estudiantes[alumnos.length * 2];
+                for (int i = 0; i < alumnos.length; i++) {
+                    nuevoArray[i] = alumnos[i];
+                }
+
+                this.alumnos = nuevoArray;
+            }
+        }
+
+
+
 
 
         public String toString(){
